@@ -1,0 +1,6 @@
+@AngularCWeb_HostAddress = http://localhost:5031
+
+GET {{AngularCWeb_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

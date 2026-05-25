@@ -1,0 +1,77 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build folders
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+publish/
+artifacts/
+
+# .NET Core / ASP.NET Core
+project.lock.json
+project.fragment.lock.json
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# VS Code / Rider
+.vscode/
+.idea/
+*.code-workspace
+
+# NuGet
+*.nupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+*.nuget.props
+*.nuget.targets
+
+# Node
+node_modules/
+
+# Logs
+*.log
+
+# SQL Server
+*.mdf
+*.ldf
+
+# Environment / Config
+.env
+.env.*
+appsettings.Development.json
+appsettings.Local.json
+
+# Test files
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+
+# ReSharper
+_ReSharper*/
+*.ReSharper
+*.DotSettings.user
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Azure
+.publishsettings
+
+# Docker
+docker-compose.override.yml
+
+# Temp files
+*.tmp
+*.temp
+~$*
