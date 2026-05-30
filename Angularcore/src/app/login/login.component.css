@@ -1,0 +1,79 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.login-container {
+  height: 100vh;
+  background-color: #f3f4f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-card {
+  width: 420px;
+  padding: 30px;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.logo-box {
+  width: 60px;
+  height: 60px;
+  background: #2563eb;
+  color: white;
+  border-radius: 12px;
+  margin: 0 auto 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-box mat-icon {
+  font-size: 30px;
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+p {
+  color: gray;
+  margin-bottom: 20px;
+}
+
+.full-width {
+  width: 100%;
+  margin-top: 15px;
+}
+
+.forgot-password {
+  text-align: right;
+  margin-top: 10px;
+}
+
+.forgot-password a {
+  text-decoration: none;
+  color: #2563eb;
+  font-size: 14px;
+}
+
+.login-btn {
+  width: 100%;
+  margin-top: 20px;
+  height: 48px;
+  font-size: 16px;
+}
+
+.footer-text {
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.footer-text a {
+  color: #2563eb;
+  text-decoration: none;
+}

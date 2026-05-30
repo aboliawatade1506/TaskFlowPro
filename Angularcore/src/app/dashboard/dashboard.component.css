@@ -1,0 +1,341 @@
+.dashboard-container{
+    padding: 18px 20px;
+    background: #f5f7fb;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* TITLE */
+
+.title-section{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.title-section h1{
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+}
+
+
+/* BUTTONS */
+
+.title-right{
+    display: flex;
+    gap: 12px;
+}
+
+.week-btn{
+    background: white;
+    border: 1px solid #e5e7eb;
+    height: 40px;
+    padding: 0px 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.report-btn{
+    background: #2563eb;
+    color: white;
+    border: none;
+    height: 40px;
+    padding: 0px 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+
+/* CARDS */
+
+.dashboard-cards{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 16px;
+    margin-bottom: 18px;
+}
+
+.card{
+    background: white;
+    border-radius: 14px;
+    padding: 18px;
+    height: 185px;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.04);
+}
+
+
+/* CARD TOP */
+
+.card-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 26px;
+}
+
+
+/* ICON */
+
+.icon{
+    width: 58px;
+    height: 58px;
+    border-radius: 16px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 22px;
+}
+
+
+/* ICON COLORS */
+
+.total-icon{
+    background: #eef2ff;
+    color: #2563eb;
+}
+
+.completed-icon{
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+.pending-icon{
+    background: #fef3c7;
+    color: #d97706;
+}
+
+.progress-icon{
+    background: #f3e8ff;
+    color: #9333ea;
+}
+
+
+/* PERCENT */
+
+.percentage{
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.green{
+    color: #16a34a;
+}
+
+.orange{
+    color: #ea580c;
+}
+
+
+/* CARD TEXT */
+
+.card h4{
+    color: #6b7280;
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 12px;
+}
+
+.card h1{
+    font-size: 24px;
+    font-weight: 700;
+    color: #111827;
+}
+
+
+/* BOTTOM */
+
+.bottom-section{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+
+/* CHART CARD */
+
+.chart-card{
+    background: white;
+    border-radius: 16px;
+    padding: 22px;
+    height: 430px;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.04);
+}
+
+
+/* CHART HEADER */
+
+.chart-header{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.chart-header h2{
+    font-size: 18px;
+    margin-bottom: 6px;
+}
+
+.chart-header p{
+    font-size: 13px;
+    color: #6b7280;
+}
+
+
+/* BAR CHART */
+
+.bar-chart{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 260px;
+    margin-top: 25px;
+}
+
+.chart-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+    gap: 14px;
+}
+
+.chart-item span{
+    font-size: 15px;
+    color: #111827;
+    font-weight: 500;
+}
+
+.bar{
+    width: 46px;
+    border-radius: 12px;
+    transition: 0.3s;
+}
+
+
+/* DYNAMIC BAR COLORS */
+
+.gray{
+    background: #d1d5db;
+}
+
+.yellow{
+    background: #facc15;
+}
+
+.purple{
+    background: #a855f7;
+}
+
+.green-bar{
+    background: #10b981;
+}
+
+
+/* PRIORITY */
+
+.priority-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 35px;
+    gap: 40px;
+}
+
+
+/* PRIORITY BOX */
+
+.priority-box{
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
+    background: conic-gradient(
+        #ef4444 0% 25%,
+        #facc15 25% 60%,
+        #3b82f6 60% 100%
+    );
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.priority-center{
+    width: 120px;
+    height: 120px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.priority-center h1{
+    font-size: 42px;
+    margin: 0;
+    font-weight: 700;
+    color: #111827;
+}
+
+.priority-center span{
+    font-size: 15px;
+    color: #6b7280;
+}
+
+
+/* PRIORITY DETAILS */
+
+.priority-details{
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.priority-item{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.priority-item p{
+    font-size: 15px;
+    color: #111827;
+    line-height: 24px;
+}
+
+
+/* DOTS */
+
+.dot{
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+}
+
+.red{
+    background: #ef4444;
+}
+
+.yellow-dot{
+    background: #facc15;
+}
+
+.blue{
+    background: #3b82f6;
+}
+
+.chart-item h4{
+    margin-top: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #111827;
+}

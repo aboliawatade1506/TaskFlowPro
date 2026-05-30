@@ -1,0 +1,327 @@
+<div class="dashboard-container">
+
+    <!-- TITLE SECTION -->
+
+    <div class="title-section">
+
+        <div>
+
+            <h1>Dashboard Overview</h1>
+
+            <p>
+                Track your key metrics and project health.
+            </p>
+
+        </div>
+
+
+        <div class="title-right">
+
+            <button class="week-btn">
+
+                <i class="fa-regular fa-calendar"></i>
+
+                This Week
+
+                <i class="fa-solid fa-angle-down"></i>
+
+            </button>
+
+
+            <button class="report-btn">
+
+                <i class="fa-solid fa-plus"></i>
+
+                New Report
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- TOP CARDS -->
+
+    <div class="dashboard-cards">
+
+        <!-- TOTAL -->
+
+        <div class="card">
+
+            <div class="card-top">
+
+                <div class="icon total-icon">
+                    <i class="fa-solid fa-clipboard-list"></i>
+                </div>
+
+                <span class="percentage green">
+                    ↗ 12%
+                </span>
+
+            </div>
+
+            <h4>Total Tasks</h4>
+
+            <h1>{{dashboardData.totalTasks}}</h1>
+
+        </div>
+
+
+
+        <!-- COMPLETED -->
+
+        <div class="card">
+
+            <div class="card-top">
+
+                <div class="icon completed-icon">
+                    <i class="fa-regular fa-circle-check"></i>
+                </div>
+
+                <span class="percentage green">
+                    ↗ 8%
+                </span>
+
+            </div>
+
+            <h4>Completed</h4>
+
+            <h1>{{dashboardData.completedTasks}}</h1>
+
+        </div>
+
+
+
+        <!-- PENDING -->
+
+        <div class="card">
+
+            <div class="card-top">
+
+                <div class="icon pending-icon">
+                    <i class="fa-regular fa-clock"></i>
+                </div>
+
+                <span class="percentage orange">
+                    ↘ 3%
+                </span>
+
+            </div>
+
+            <h4>Pending</h4>
+
+            <h1>{{dashboardData.pendingTasks}}</h1>
+
+        </div>
+
+
+
+        <!-- HOURS -->
+
+        <div class="card">
+
+            <div class="card-top">
+
+                <div class="icon progress-icon">
+                    <i class="fa-solid fa-stopwatch"></i>
+                </div>
+
+                <span class="percentage green">
+                    ↗ 24%
+                </span>
+
+            </div>
+
+            <h4>Hours Logged</h4>
+
+            <h1>{{dashboardData.inProgressTasks}}h</h1>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- BOTTOM SECTION -->
+
+    <div class="bottom-section">
+
+       <!-- TASK STATUS -->
+
+<div class="chart-card">
+
+    <div class="chart-header">
+
+        <div>
+            <h2>Tasks by Status</h2>
+            <p>Current sprint progress overview</p>
+        </div>
+
+        <!-- <i class="fa-solid fa-ellipsis"></i> -->
+
+    </div>
+
+
+    <div class="bar-chart">
+
+    <!-- Pending -->
+
+    <div class="chart-item">
+
+        <div class="bar gray"
+        [style.height.%]="(dashboardData.pendingTasks / dashboardData.totalTasks) * 100">
+        </div>
+
+        <span>Pending</span>
+
+    </div>
+
+
+
+    <!-- In Progress -->
+
+    <div class="chart-item">
+
+        <div class="bar yellow"
+        [style.height.%]="(dashboardData.inProgressTasks / dashboardData.totalTasks) * 100">
+        </div>
+
+        <span>In Progress</span>
+
+    </div>
+
+
+
+    <!-- Total -->
+
+    <div class="chart-item">
+
+        <div class="bar purple"
+        [style.height.%]="100">
+        </div>
+
+        <span>Total</span>
+
+    </div>
+
+
+
+    <!-- Completed -->
+
+    <div class="chart-item">
+
+        <div class="bar green-bar"
+        [style.height.%]="(dashboardData.completedTasks / dashboardData.totalTasks) * 100">
+        </div>
+
+        <span>Completed</span>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- PRIORITY -->
+
+<div class="chart-card">
+
+    <div class="chart-header">
+
+        <div>
+            <h2>Priority Breakdown</h2>
+            <p>Distribution of task urgency</p>
+        </div>
+
+        <!-- <i class="fa-solid fa-ellipsis"></i> -->
+
+    </div>
+
+
+
+    <div class="priority-container">
+
+        <div class="priority-box">
+
+            <div class="priority-center">
+
+                <h1>{{dashboardData.totalTasks}}</h1>
+
+                <span>Total</span>
+
+            </div>
+
+        </div>
+
+
+
+       <div class="priority-details">
+
+    <!-- HIGH -->
+
+    <div class="priority-item">
+
+        <span class="dot red"></span>
+
+        <div>
+
+            <h4>High Priority</h4>
+
+            <p>
+                {{getHighPercentage()}}%
+  {{dashboardData.completedTasks}} Tasks
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- MEDIUM -->
+
+    <div class="priority-item">
+
+        <span class="dot yellow-dot"></span>
+
+        <div>
+
+            <h4>Medium Priority</h4>
+
+            <p>
+                {{getMediumPercentage()}}%
+  {{dashboardData.pendingTasks}} Tasks
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- LOW -->
+
+    <div class="priority-item">
+
+        <span class="dot blue"></span>
+
+        <div>
+
+            <h4>Low Priority</h4>
+
+            <p>
+                {{getLowPercentage()}}%
+  {{dashboardData.inProgressTasks}} Tasks
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+    </div>
+
+</div>

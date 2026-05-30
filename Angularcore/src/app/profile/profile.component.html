@@ -1,0 +1,148 @@
+<div class="profile-page">
+
+  <!-- Page Title -->
+  <div class="page-title">
+    <h1>Profile Settings</h1>
+    <p>Manage your account details and security preferences.</p>
+  </div>
+
+  <!-- Main Card -->
+  <div class="profile-card">
+
+    <!-- Left Section -->
+    <div class="profile-left">
+
+   <img
+  [src]="profile.profileImage"
+  alt="Profile"
+  class="profile-image">
+
+<input
+  type="file"
+  #fileInput
+  hidden
+  accept="image/*"
+  (change)="onFileSelected($event)">
+
+<button
+  mat-raised-button
+  color="primary"
+  class="upload-btn"
+  (click)="fileInput.click()">
+  Upload Photo
+</button>
+
+    </div>
+
+    <!-- Right Section -->
+    <div class="profile-right">
+
+     <h2>Personal Information</h2>
+
+<div class="info-box">
+  <label>Full Name</label>
+  <p>{{ profile.fullName }}</p>
+</div>
+
+<div class="info-box">
+  <label>Email Address</label>
+  <p>{{ profile.email }}</p>
+</div>
+
+<div class="info-box">
+  <label>Role</label>
+  <p>{{ profile.role }}</p>
+</div>
+
+<hr>
+
+<h2>Change Password</h2>
+
+<!-- Current Password -->
+<mat-form-field appearance="outline" class="full-width">
+
+  <mat-label>Current Password</mat-label>
+
+  <input
+    matInput
+    [type]="hideCurrentPassword ? 'password' : 'text'"
+    [(ngModel)]="profileData.currentPassword">
+
+  <button
+    mat-icon-button
+    matSuffix
+    type="button"
+    (click)="hideCurrentPassword = !hideCurrentPassword">
+
+    <mat-icon>
+      {{ hideCurrentPassword ? 'visibility_off' : 'visibility' }}
+    </mat-icon>
+
+  </button>
+
+</mat-form-field>
+
+<div class="form-row">
+
+  <!-- New Password -->
+  <mat-form-field appearance="outline" class="half-width">
+
+    <mat-label>New Password</mat-label>
+
+    <input
+      matInput
+      [type]="hideNewPassword ? 'password' : 'text'"
+      [(ngModel)]="profileData.newPassword">
+
+    <button
+      mat-icon-button
+      matSuffix
+      type="button"
+      (click)="hideNewPassword = !hideNewPassword">
+
+      <mat-icon>
+        {{ hideNewPassword ? 'visibility_off' : 'visibility' }}
+      </mat-icon>
+
+    </button>
+
+  </mat-form-field>
+
+  <!-- Confirm Password -->
+  <mat-form-field appearance="outline" class="half-width">
+
+    <mat-label>Confirm Password</mat-label>
+
+    <input
+      matInput
+      [type]="hideConfirmPassword ? 'password' : 'text'"
+      [(ngModel)]="profileData.confirmPassword">
+
+    <button
+      mat-icon-button
+      matSuffix
+      type="button"
+      (click)="hideConfirmPassword = !hideConfirmPassword">
+
+      <mat-icon>
+        {{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}
+      </mat-icon>
+
+    </button>
+
+  </mat-form-field>
+
+</div>
+
+<div class="btn-section">
+
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="updateProfile()">
+
+    Update Profile
+
+  </button>
+
+</div>

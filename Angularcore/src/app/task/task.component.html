@@ -1,0 +1,276 @@
+<div class="task-page">
+<!-- task list fetch -->
+  <div class="top-bar">
+    <h1>Task List</h1>
+
+    <button mat-raised-button color="primary" (click)="openTaskModal(taskPopup)">
+      <mat-icon>add</mat-icon>
+      Add New Task
+    </button>
+  </div>
+
+  <p class="subtitle">
+    Manage and track all enterprise tasks across your organization.
+  </p>
+
+  <mat-card class="task-card">
+
+    <mat-tab-group>
+      <mat-tab label="All Tasks"></mat-tab>
+      <mat-tab label="Active"></mat-tab>
+      <mat-tab label="Completed"></mat-tab>
+    </mat-tab-group>
+
+    <table mat-table [dataSource]="taskData" class="task-table">
+
+      <!-- Task Name -->
+      <ng-container matColumnDef="taskName">
+        <th mat-header-cell *matHeaderCellDef> Task Name </th>
+        <td mat-cell *matCellDef="let t">
+          {{t.taskName}}
+        </td>
+      </ng-container>
+
+      <!-- Priority -->
+     <ng-container matColumnDef="priority">
+  <th mat-header-cell *matHeaderCellDef> Priority </th>
+  <td mat-cell *matCellDef="let t">
+    <span class="priority" [ngClass]="getPriorityClass(t.priority)">
+      {{ t.priority }}
+    </span>
+  </td>
+</ng-container>
+
+      <!-- Assign By -->
+<ng-container matColumnDef="assignBy">
+  <th mat-header-cell *matHeaderCellDef> Assignee </th>
+  <td mat-cell *matCellDef="let t">
+    <div class="assignee-box">
+      <img src="assets/image.png" alt="profile" class="profile-img">
+      <span>{{ t.assignBy }}</span>
+    </div>
+  </td>
+</ng-container>
+
+      <!-- Due Date -->
+      <ng-container matColumnDef="dueDate">
+        <th mat-header-cell *matHeaderCellDef> Due Date </th>
+        <td mat-cell *matCellDef="let t">
+          {{t.dueDate | date}}
+        </td>
+      </ng-container>
+
+      <!-- Action -->
+      <ng-container matColumnDef="action">
+  <th mat-header-cell *matHeaderCellDef> Actions </th>
+  <td mat-cell *matCellDef="let t">
+
+    <!-- View -->
+    <button mat-icon-button matTooltip="View Task" (click)="viewTask(taskViewPopup, t)">
+  <mat-icon color="primary">visibility</mat-icon>
+</button>
+
+
+    <!-- Delete -->
+    <button mat-icon-button matTooltip="Delete Task" (click)="deleteTask(t)">
+      <mat-icon color="warn">delete</mat-icon>
+    </button>
+
+  </td>
+</ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+<tr
+  mat-row
+  *matRowDef="let row; columns: displayedColumns;"
+  (dblclick)="editTask(row, taskPopup)"
+  class="editable-row">
+</tr>
+    </table>
+
+      <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons>
+      </mat-paginator>
+
+  </mat-card>
+
+</div>
+
+<!-- add new task -->
+<ng-template #taskPopup>
+
+  <div class="popup-container">
+
+    <h1>Create New Task</h1>
+    <p>Fill in the details below to assign a new task within the workspace.</p>
+
+    <!-- Task Title -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Task Title</mat-label>
+      <input matInput [(ngModel)]="newTask.taskName">
+    </mat-form-field>
+
+    <!-- Description -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Description</mat-label>
+      <textarea matInput rows="5" [(ngModel)]="newTask.taskDescription"></textarea>
+    </mat-form-field>
+
+    <!-- Row 1 -->
+    <div class="form-row">
+
+      <mat-form-field appearance="outline">
+        <mat-label>Priority</mat-label>
+        <mat-select [(ngModel)]="newTask.priority">
+          <mat-option value="Low">Low</mat-option>
+          <mat-option value="Medium">Medium</mat-option>
+          <mat-option value="High">High</mat-option>
+          <mat-option value="Critical">Critical</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Status</mat-label>
+        <mat-select [(ngModel)]="newTask.taskStatus">
+          <mat-option value="To Do">To Do</mat-option>
+          <mat-option value="In Progress">In Progress</mat-option>
+          <mat-option value="Completed">Completed</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+
+    <!-- Row 2 -->
+    <div class="form-row">
+
+  <mat-form-field appearance="outline">
+  <mat-label>Assign User</mat-label>
+
+  <mat-select [(ngModel)]="newTask.assignBy">
+    <mat-option value="Manager">Manager User</mat-option>
+    <mat-option value="Employee">Employee User</mat-option>
+  </mat-select>
+
+</mat-form-field>
+
+    <mat-form-field appearance="outline">
+  <mat-label>Due Date</mat-label>
+
+  <input
+    matInput
+    [matDatepicker]="picker"
+    placeholder="mm/dd/yyyy"
+    [(ngModel)]="newTask.dueDate">
+
+  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+
+    </div>
+
+    <!-- Buttons -->
+    <div class="popup-actions">
+      <button mat-stroked-button (click)="closeModal()">Cancel</button>
+
+      <button mat-raised-button color="primary" (click)="saveTask()">
+  <mat-icon>save</mat-icon>
+  {{ isEditMode ? 'Update Task' : 'Save Task' }} </button>
+    </div>
+
+  </div>
+
+</ng-template>
+
+<!-- view task -->
+<ng-template #taskViewPopup>
+  <div class="task-view-container">
+
+    <!-- Header -->
+    <div class="task-view-header">
+      <div>
+        <h1>Task Details</h1>
+      </div>
+
+      <div class="task-actions">
+        <button mat-stroked-button (click)="editTask(selectedTask,taskPopup)">
+          <mat-icon>edit</mat-icon>
+          Edit
+        </button>
+
+        <button mat-raised-button color="primary">
+          <mat-icon>check_circle</mat-icon>
+          Complete Task
+        </button>
+      </div>
+    </div>
+
+    <!-- Layout -->
+    <div class="task-content-layout">
+
+      <!-- Left Side -->
+      <div class="task-main-section">
+        <h2>{{ selectedTask.taskName }}</h2> 
+        <p>
+          {{ selectedTask.taskDescription }}
+        </p>
+
+        <div class="task-bottom-strip">
+          <div class="bottom-item">
+            <mat-icon>calendar_today</mat-icon>
+            <div>
+              <small>DUE DATE : </small>
+              <strong>{{ selectedTask.dueDate | date }}</strong>
+            </div>
+          </div>
+
+          <div class="bottom-item">
+            <img src="assets/image.png" class="profile-img">
+            <div>
+              <small>ASSIGNED TO : </small>
+              <strong>{{ selectedTask.assignBy }}</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Side -->
+      <div class="task-sidebar">
+
+        <div class="sidebar-card">
+          <h3>Details</h3>
+
+          <label>STATUS</label>
+          <div class="status-badge">
+            {{ selectedTask.taskStatus }}
+          </div>
+
+          <label>PRIORITY</label>
+          <div class="priority"
+               [ngClass]="getPriorityClass(selectedTask.priority)">
+            {{ selectedTask.priority }}
+          </div>
+        </div>
+
+        <div class="sidebar-card">
+          <h3>Activity Log</h3>
+
+          <div class="log-item">
+            <span class="dot red"></span>
+            Priority updated
+          </div>
+
+          <div class="log-item">
+            <span class="dot blue"></span>
+            Status changed
+          </div>
+
+          <div class="log-item">
+            <span class="dot gray"></span>
+            Created task
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</ng-template>
