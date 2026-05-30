@@ -1,18 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Data.Model
+﻿namespace DTOs.Response
 {
 #nullable disable
-
     /// <summary>
-    /// Represents a user entity in the application.
+    /// Response DTO used to update user profile details.
     /// </summary>
-    public class User
+    public class ProfileResponse
     {
         /// <summary>
-        /// Gets or sets the unique identifier for the user.
+        /// Gets or sets the unique identifier of the user.
         /// </summary>
-        [Key]
         public Guid Id { get; set; }
 
         /// <summary>
@@ -23,7 +19,7 @@ namespace Data.Model
         /// <summary>
         /// Gets or sets the email address of the user.
         /// </summary>
-        public string Email {  get; set; }
+        public string Email { get; set; }
 
         /// <summary>
         /// Gets or sets the role assigned to the user.
@@ -36,8 +32,9 @@ namespace Data.Model
         public string ProfileImage { get; set; }
 
         /// <summary>
-        /// Gets or sets the password of the user.
+        /// Gets or sets the user's password.
+        /// Used for password validation during profile update.
         /// </summary>
-        public string Password { get; set; }
+        public string Password {  get; set; }
     }
 }

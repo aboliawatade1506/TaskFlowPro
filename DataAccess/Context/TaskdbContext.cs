@@ -49,6 +49,9 @@ namespace DataAccess.Context
             modelBuilder.Entity<User>().HasKey(u => u.Id);
             modelBuilder.Entity<User>().Property(u => u.Email).IsRequired().HasMaxLength(200);
             modelBuilder.Entity<User>().Property(u => u.Password).IsRequired().HasMaxLength(200);
+            modelBuilder.Entity<User>().Property(u => u.FullName).IsRequired().HasMaxLength(200);
+            modelBuilder.Entity<User>().Property(u => u.Role).HasMaxLength(100);
+            modelBuilder.Entity<User>().Property(u => u.ProfileImage).HasMaxLength(500);
         }
     }
 }

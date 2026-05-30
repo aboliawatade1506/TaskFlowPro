@@ -1,3 +1,8 @@
+using AngularCWeb.DataAccess.Repository.Implementations;
+using AngularCWeb.DataAccess.Repository.Interfaces;
+using AngularCWeb.Service.Services.Implementations;
+using AngularCWeb.Service.Services.Interfaces;
+using AngularWeb.DataAccess.Repository.Implementations;
 using Data.Repository.Implementations;
 using Data.Repository.Interfaces;
 using DataAccess.Context;
@@ -13,7 +18,8 @@ builder.Services.AddControllers();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-//builder.Services.AddSwaggerGen();
+
+//builder.Services.AddSwaggerGen();;;
 builder.Services.AddSwaggerGen(options =>
 {
     var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -23,11 +29,15 @@ builder.Services.AddSwaggerGen(options =>
 //Configure dbContext
 builder.Services.AddDbContext<TaskdbContext>(Options => Options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
- // Register repositories 
+// Register repositories 
+builder.Services.AddScoped<IDashboardRepository,DashboardRepository>();
+builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
 builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 // Register services
+builder.Services.AddScoped<IDashboardService,DashboardService>();
+builder.Services.AddScoped<IProfileService, ProfileService>();
 builder.Services.AddScoped<ITaskService, TaskService>();
 builder.Services.AddScoped<IUserService, UserService>();
 

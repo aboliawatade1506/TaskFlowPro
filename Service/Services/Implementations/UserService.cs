@@ -1,5 +1,6 @@
 ﻿using Data.Model;
 using Data.Repository.Interfaces;
+using Microsoft.Extensions.Logging;
 using Service.Services.Interfaces;
 
 namespace Service.Services.Implementations
@@ -17,12 +18,24 @@ namespace Service.Services.Implementations
         private readonly IUserRepository userRepository;
 
         /// <summary>
-        /// Initializes a new instance of the UserService class with the specified user repository.
+        /// Logger instance used to record information, warnings, and errors related to user service operations.
         /// </summary>
-        /// <param name="userRepository">The repository used for user-related data access operations.</param>
-        public UserService(IUserRepository userRepository)
+        private readonly ILogger<UserService> logger;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UserService"/> class
+        /// with the specified user repository and logger.
+        /// </summary>
+        /// <param name="userRepository">
+        /// Repository used to perform user-related data access operations.
+        /// </param>
+        /// <param name="logger">
+        /// Logger used to record application events, diagnostic information,warnings, and exceptions for user service operations.
+        /// </param>
+        public UserService(IUserRepository userRepository, ILogger<UserService> logger)
         {
             this.userRepository = userRepository;
+            this.logger = logger;
         }
 
         /// <summary>
@@ -35,7 +48,13 @@ namespace Service.Services.Implementations
         /// </returns>
         public User Login(string email, string password)
         {
-            return userRepository.Login(email, password);
+            this.logger.LogInformation("Started {Service} - {Method} Email: {Email}",nameof(UserService),nameof(Login),email);
+
+            var user =userRepository.Login(email, password);
+
+            this.logger.LogInformation("Ended {Service} - {Method} Email: {Email} Response: {@Response}",nameof(UserService),nameof(Login),email,user);
+
+            return user;
         }
     }
 }

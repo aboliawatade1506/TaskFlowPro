@@ -24,7 +24,7 @@ namespace Service.Services.Interfaces
         /// <returns>
         /// Returns a collection of all task records.
         /// </returns>
-        Task<IEnumerable<ModelTask>> GetAllTaskAsync();
+        Task<IEnumerable<ModelTask>> GetAllTaskAsync(string role);
 
         /// <summary>
         /// Retrieves all completed tasks asynchronously.
@@ -60,6 +60,17 @@ namespace Service.Services.Interfaces
         /// Represents the asynchronous delete operation.
         /// </returns>
         Task DeleteTaskAsync(Guid id);
+
+        /// <summary>
+        /// Retrieves tasks based on the specified user role.
+        /// </summary>
+        /// <param name="role">
+        /// Role of the user.
+        /// </param>
+        /// <returns>
+        /// Returns a collection of tasks associated with the specified role.
+        /// </returns>
+        Task<IEnumerable<ModelTask>> GetTasksByRoleAsync(string role);
 
     }
 }

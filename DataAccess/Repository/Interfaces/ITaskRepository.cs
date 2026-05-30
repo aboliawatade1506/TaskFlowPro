@@ -12,7 +12,7 @@ namespace Data.Repository.Interfaces
         /// <returns>
         /// Returns a collection of all task records.
         /// </returns>
-        Task<IEnumerable<ModelTask>> GetAllTask();
+        Task<IEnumerable<ModelTask>> GetAllTask(string role);
 
         /// <summary>
         /// Retrieves a task by its unique identifier asynchronously.
@@ -57,5 +57,16 @@ namespace Data.Repository.Interfaces
         /// Returns a collection of completed task records.
         /// </returns>
         Task<IEnumerable<ModelTask>> GetCompletedTasksAsync();
+
+        /// <summary>
+        /// Retrieves tasks based on the specified user role.
+        /// </summary>
+        /// <param name="role">
+        /// Role of the user.
+        /// </param>
+        /// <returns>
+        /// Returns a collection of tasks associated with the specified role.
+        /// </returns>
+        Task<IEnumerable<ModelTask>> GetTasksByRoleAsync(string role);
     }
 }

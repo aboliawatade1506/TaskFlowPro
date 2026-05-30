@@ -1,11 +1,16 @@
+```gitignore
+############################
 # Visual Studio
+############################
 .vs/
 *.suo
 *.user
 *.userosscache
 *.sln.docstates
 
-# Build folders
+############################
+# Build Folders
+############################
 [Bb]in/
 [Oo]bj/
 [Dd]ebug/
@@ -15,63 +20,110 @@ x86/
 publish/
 artifacts/
 
-# .NET Core / ASP.NET Core
+############################
+# ASP.NET Core / .NET
+############################
 project.lock.json
 project.fragment.lock.json
-
-# ASP.NET Scaffolding
 ScaffoldingReadMe.txt
 
-# VS Code / Rider
-.vscode/
-.idea/
-*.code-workspace
-
+############################
 # NuGet
+############################
 *.nupkg
 **/[Pp]ackages/*
 !**/[Pp]ackages/build/
 *.nuget.props
 *.nuget.targets
 
-# Node
-node_modules/
-
-# Logs
-*.log
-
-# SQL Server
-*.mdf
-*.ldf
-
-# Environment / Config
+############################
+# Environment Files
+############################
 .env
 .env.*
 appsettings.Development.json
 appsettings.Local.json
 
-# Test files
+############################
+# SQL Server
+############################
+*.mdf
+*.ldf
+
+############################
+# Test Results
+############################
 TestResults/
 *.trx
 *.coverage
 *.coveragexml
 
+############################
 # ReSharper
+############################
 _ReSharper*/
 *.ReSharper
 *.DotSettings.user
 
-# OS files
-.DS_Store
-Thumbs.db
+############################
+# VS Code / Rider
+############################
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 
-# Azure
-.publishsettings
+.idea/
+*.code-workspace
 
-# Docker
-docker-compose.override.yml
+############################
+# Angular
+############################
+node_modules/
+dist/
+.angular/cache/
+out-tsc/
+coverage/
 
-# Temp files
+############################
+# NPM / Yarn Logs
+############################
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+############################
+# Temporary Files
+############################
+*.log
 *.tmp
 *.temp
 ~$*
+
+############################
+# Docker
+############################
+docker-compose.override.yml
+
+############################
+# Azure
+############################
+.publishsettings
+
+############################
+# OS Files
+############################
+.DS_Store
+Thumbs.db
+
+############################
+# Misc
+############################
+.history/
+.sass-cache/
+connect.lock
+libpeerconnection.log
+testem.log
+typings/
+```
